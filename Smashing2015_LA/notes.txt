@@ -1,0 +1,37 @@
+1 - 4 Cat
+4 - 12 Glitch
+12 - 16 Lines
+24 - Squares come out,  world stuff, radar stuff
+
+32 - robot mouth - sound wave? 
+36 - add something ? 
+40 - add something else ? 
+
+44 - drop down - big circles coming down 
+   - pipe organ doing robot voice 
+
+48 - something dynamic
+
+57 - change - instructions for interactive
+
+61 - interactive section 
+
+69 - picks up - more clapping 
+
+77 - go crazy 
+81 - p
+p
+85 end. 
+
+
+
+To do : 
+
+spirals coming from top rather than rings 
+Waveform projected on to 3D dome
+Wiggly line for analog synth sound
+Particles that come down the dome
+Robot mouth on dome squares
+Flash random dome squares? 
+
+Starfield √
