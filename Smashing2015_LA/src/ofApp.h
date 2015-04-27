@@ -7,7 +7,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "LaserManager.h"
+#include "LaserManagerAnaglyphic.h"
 #include "ParticleSystemManager.h"
 #include "Synchroniser.h"
 #include "PipeOrganData.h"
@@ -35,7 +35,7 @@ class ofApp : public ofBaseApp{
 
 	public:
 	
-	ofApp() : particleSystemManager(*ParticleSystemManager::instance()), laserManager(*LaserManager::instance()) {
+	ofApp() : particleSystemManager(*ParticleSystemManager::instance()){
 	};
 	
 	void setup();
@@ -76,7 +76,7 @@ class ofApp : public ofBaseApp{
 	void addWordParticle(string message, ofPoint pos); 
 	void writeMessage(string message);
 
-	
+	//ofCamera cam;
 	//ColourSystem cyan;
 	
 	ofRectangle secondScreenRect; 
@@ -102,7 +102,7 @@ class ofApp : public ofBaseApp{
 	ofParameter<bool> showGuideImage;
 	ofParameter<bool> showBands; 
 	
-	LaserManager& laserManager;
+	LaserManagerAnaglyphic laserManager;
 	ParticleSystemManager& particleSystemManager;
 	
 	ofFbo projectorFbo;

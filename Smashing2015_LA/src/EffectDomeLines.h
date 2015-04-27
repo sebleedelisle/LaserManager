@@ -12,7 +12,7 @@
 #include "ofMain.h"
 #include "Synchroniser.h"
 #include "DomeData.h"
-#include "LaserManager.h"
+#include "LaserManagerAnaglyphic.h"
 
 
 
@@ -74,7 +74,7 @@ class EffectDomeLines {
 	EffectDomeLines();
 	
 	void update(float deltaTime);
-	void draw(Synchroniser& sync, float volume, LaserManager& lm);
+	void draw(Synchroniser& sync, float volume, LaserManagerAnaglyphic& lm);
 	
 	void setDomeData(DomeData* domedata);
 	void setMode(int mode); 

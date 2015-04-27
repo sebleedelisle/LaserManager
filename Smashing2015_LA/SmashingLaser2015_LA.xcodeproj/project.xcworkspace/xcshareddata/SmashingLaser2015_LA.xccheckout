@@ -12,6 +12,8 @@
 	<dict>
 		<key>033119C972DFE59718092B5C52DB7E814DF74ABB</key>
 		<string>github.com:kylemcdonald/ofxLibdc.git</string>
+		<key>23C64D80E246138DC6585196EEE3D4D57B6455AB</key>
+		<string>github.com:sebleedelisle/openFrameworks.git</string>
 		<key>2DE9C8846D9375EAACFABA8963120E8E7719BAF5</key>
 		<string>github.com:sebleedelisle/openFrameworks.git</string>
 		<key>51E9364AA91F76E6351201E10782ECC7DE6967A1</key>
@@ -23,8 +25,10 @@
 	<dict>
 		<key>033119C972DFE59718092B5C52DB7E814DF74ABB</key>
 		<string>../../../addons/ofxLibdc</string>
-		<key>2DE9C8846D9375EAACFABA8963120E8E7719BAF5</key>
+		<key>23C64D80E246138DC6585196EEE3D4D57B6455AB</key>
 		<string>../../..</string>
+		<key>2DE9C8846D9375EAACFABA8963120E8E7719BAF5</key>
+		<string>../../../../..</string>
 		<key>51E9364AA91F76E6351201E10782ECC7DE6967A1</key>
 		<string>../..</string>
 	</dict>
@@ -40,9 +44,17 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2DE9C8846D9375EAACFABA8963120E8E7719BAF5</string>
+			<string>23C64D80E246138DC6585196EEE3D4D57B6455AB</string>
 			<key>IDESourceControlWCCName</key>
 			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2DE9C8846D9375EAACFABA8963120E8E7719BAF5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>..</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

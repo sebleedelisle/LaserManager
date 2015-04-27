@@ -15,7 +15,7 @@ PipeOrganData::PipeOrganData() {
 
 	// needs to be in laser space
 	ofRectangle rect(556,631,170,190);
-	int numPipes = 33;
+	int numPipes = 26;
 
 	for (int i = 0; i<numPipes; i++) {
 		

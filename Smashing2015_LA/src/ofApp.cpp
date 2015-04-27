@@ -11,7 +11,7 @@ void ofApp::setup(){
 	screenWidth = 1280;
 	screenHeight = 960;
 	
-	guideImage.loadImage("img/LaserableArea2.jpg");
+	guideImage.loadImage("img/GuideImageLA.jpg");
 	music.loadSound("../../../Music/RobotsEdit2.aif");
 	video.loadMovie("../../../Music/Main Video 08.mov");
 	video.setVolume(0);
@@ -143,7 +143,7 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	
-	
+	//cam.truck(1);
 	float deltaTime = ofClamp(ofGetLastFrameTime(), 0, 0.2);
 	
 	ofSoundUpdate();
@@ -191,7 +191,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofBackground(0);
-	
+
 	
 	int numBands = 500;
 	vol = 0;
@@ -395,6 +395,8 @@ void ofApp::draw(){
 	redGui.draw();
 	greenGui.draw();
 	blueGui.draw();
+	
+
 }
 
 void ofApp :: drawEffects() {
