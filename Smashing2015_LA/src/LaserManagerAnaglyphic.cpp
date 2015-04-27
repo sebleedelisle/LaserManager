@@ -44,6 +44,14 @@ void LaserManagerAnaglyphic:: addLaserLineEased(const ofPoint&startpoint, const 
 	
 }
 
+void LaserManagerAnaglyphic::addLaserRectEased(const ofPoint&topLeft, const ofPoint&dimensions, ofFloatColor colour){
+	
+	addLaserLineEased(topLeft, ofPoint(topLeft.x+dimensions.x,topLeft.y, topLeft.z), colour);
+	addLaserLineEased(ofPoint(topLeft.x+dimensions.x,topLeft.y, topLeft.z), topLeft+dimensions, colour);
+	addLaserLineEased(topLeft+dimensions, ofPoint(topLeft.x,topLeft.y+dimensions.y, topLeft.z), colour);
+	addLaserLineEased(ofPoint(topLeft.x,topLeft.y+dimensions.y, topLeft.z), topLeft, colour);
+	
+}
 
 ofPoint LaserManagerAnaglyphic::convertToLeftPoint(ofPoint p) {
 	ofPoint rp = p;

@@ -13,10 +13,15 @@ PipeOrganData::PipeOrganData() {
 
 	editable = false; 
 
-	// needs to be in laser space
-	ofRectangle rect(556,631,170,190);
-	int numPipes = 26;
+	
 
+};
+
+void PipeOrganData::init(ofRectangle rect) {
+	
+	
+	int numPipes = 26;
+	
 	for (int i = 0; i<numPipes; i++) {
 		
 		pipes.push_back(Pipe(i));
@@ -24,7 +29,7 @@ PipeOrganData::PipeOrganData() {
 		
 		pipe.setTop(ofMap(i,0,numPipes, rect.getLeft(), rect.getRight()), rect.getTop());
 		pipe.setBottom(pipe.top.x, rect.getBottom());
-	
+		
 		params.add(pipe.topParam);
 		params.add(pipe.bottomParam);
 		
@@ -34,10 +39,11 @@ PipeOrganData::PipeOrganData() {
 	//gui.setup(params, "pipeOrganData.xml");
 	
 	
-
-
-
+	
+	
+	
 };
+
 
 void PipeOrganData::draw() {
 	if(!editable) return; 

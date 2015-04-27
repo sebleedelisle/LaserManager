@@ -1139,11 +1139,11 @@ void LaserManager::drawLaserSpiral(LaserSpiral& spiral){
 
 void LaserManager::addLaserRectEased(const ofPoint&topLeft, const ofPoint&dimensions, ofFloatColor colour){
 	
-	addLaserLineEased(topLeft, ofPoint(topLeft.x+dimensions.x,topLeft.y), colour);
-	addLaserLineEased(ofPoint(topLeft.x+dimensions.x,topLeft.y), topLeft+dimensions, colour);
-	addLaserLineEased(topLeft+dimensions, ofPoint(topLeft.x,topLeft.y+dimensions.y), colour);
-	addLaserLineEased(ofPoint(topLeft.x,topLeft.y+dimensions.y), topLeft, colour);
 	
+	addLaserLineEased(topLeft, ofPoint(topLeft.x+dimensions.x,topLeft.y, topLeft.z), colour);
+	addLaserLineEased(ofPoint(topLeft.x+dimensions.x,topLeft.y, topLeft.z), topLeft+dimensions, colour);
+	addLaserLineEased(topLeft+dimensions, ofPoint(topLeft.x,topLeft.y+dimensions.y, topLeft.z), colour);
+	addLaserLineEased(ofPoint(topLeft.x,topLeft.y+dimensions.y, topLeft.z), topLeft, colour);
 }
 
 ofxIlda::Point LaserManager::ofPointToIldaPoint(const ofPoint& ofpoint, ofFloatColor colour){

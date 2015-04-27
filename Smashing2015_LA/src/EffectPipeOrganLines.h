@@ -48,11 +48,17 @@ struct PipeOrganLine {
 	
 	void update(float deltaTime) {
 		elapsedTime+=deltaTime;
-
 		topUnit = ofMap(elapsedTime, 0, duration, startTop, endTop, true);
+
+		
 		currentTop = top + ((bottom - top) * topUnit);
 		bottomUnit = ofMap(elapsedTime, 0, duration, startBottom, endBottom, true);
 		currentBottom = top + ((bottom - top)  * bottomUnit);
+		
+		ofPoint zoff(0,0,ofMap(abs(bottomUnit-topUnit), 1, 0, 200, 0, true));
+
+		currentTop+=zoff;
+		currentBottom+=zoff;
 		
 	}
 	
