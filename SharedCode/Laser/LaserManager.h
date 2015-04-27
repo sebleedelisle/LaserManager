@@ -107,9 +107,16 @@ class LaserManager {
 		
 		GLdouble projection[16];
         glGetDoublev(GL_PROJECTION_MATRIX, projection);
-		
+
 		GLint viewport[4];
 		glGetIntegerv(GL_VIEWPORT, viewport);
+		
+		//ofGetCurrentViewport();
+		// TODO get this from the current drawstate!
+//		viewport[2] = 1280;
+//		viewport[3] = 960;
+//		
+		//cout << viewport[0] << " " <<viewport[1] << " " <<viewport[2] << " " <<viewport[3] << " " << endl;
 		
 		GLdouble X, Y, Z = 0;
 		gluProject( ax, ay, az, model_view, projection, viewport, &X, &Y, &Z);

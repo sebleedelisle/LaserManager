@@ -114,7 +114,7 @@ void EffectLaserBeams :: update(float deltaTime){
 }
 
 
-void EffectLaserBeams :: draw(LaserManager& laserManager, float intensity) {
+void EffectLaserBeams :: draw(LaserManagerAnaglyphic& laserManager, float intensity) {
 	
 	
 	float xRotation = 20;

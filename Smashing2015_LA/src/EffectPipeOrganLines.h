@@ -12,7 +12,7 @@
 #include "ofMain.h"
 #include "Synchroniser.h"
 #include "PipeOrganData.h"
-#include "LaserManager.h"
+#include "LaserManagerAnaglyphic.h"
 #include "ParticleSystemManager.h"
 #include "ParticleRendererLaser.h"
 #include "ParticleRendererLaserLine.h"
@@ -72,7 +72,7 @@ class EffectPipeOrganLines {
 	public :
 	
 	void update(float deltaTime);
-	void draw(Synchroniser& sync, float volume, LaserManager& lm, float currentPeak);
+	void draw(Synchroniser& sync, float volume, LaserManagerAnaglyphic& lm, float currentPeak);
 	
 	void setObjects(PipeOrganData* pipeOrganData, ParticleSystemManager* psm);
 	void makeParticleForPipe(int pipeindex, ofColor col);

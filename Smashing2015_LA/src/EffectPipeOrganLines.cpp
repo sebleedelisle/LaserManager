@@ -30,7 +30,7 @@ void EffectPipeOrganLines::setMode(int newmode) {
 	
 }
 // also gonna need : LaserManager
-void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& lm, float currentPeak) {
+void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManagerAnaglyphic& lm, float currentPeak) {
 
 	
 	if(pipeOrganData == NULL) return;

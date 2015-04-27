@@ -215,7 +215,7 @@ void ofApp::draw(){
 	
 	
 	uiFbo.begin();
-	ofSetupScreenPerspective(1280,960,50);
+	ofSetupScreenPerspective(screenWidth,screenHeight,50);
 
 	ofSetColor(0);
 	ofFill(); 
@@ -243,7 +243,7 @@ void ofApp::draw(){
 				} 
 			}
 		}
-		ofSetupScreenPerspective(1280,960,50);
+		ofSetupScreenPerspective(screenWidth,screenHeight,50);
 
 		domeData.draw();
 		
@@ -352,7 +352,8 @@ void ofApp::draw(){
 	ofPopMatrix();
 	
 	uiFbo.begin();
-	ofSetupScreenPerspective(1280,960,50);
+	ofSetupScreenPerspective(screenWidth,screenHeight,50);
+
 
 	
 	// EFFECTS ---------------------------------------------

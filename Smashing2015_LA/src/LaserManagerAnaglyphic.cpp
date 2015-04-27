@@ -9,14 +9,36 @@
 #include "LaserManagerAnaglyphic.h"
 
 
+LaserManagerAnaglyphic * LaserManagerAnaglyphic :: laserManagerAnaglyphic = NULL;
+
+LaserManagerAnaglyphic * LaserManagerAnaglyphic::instanceAnaglyphic() {
+	if(laserManagerAnaglyphic == NULL) {
+		laserManagerAnaglyphic = new LaserManagerAnaglyphic();
+	}
+	return laserManagerAnaglyphic;
+}
+
+LaserManagerAnaglyphic::LaserManagerAnaglyphic() : LaserManager() {
+	
+	// TODO figure out where the camera actually is
+	
+	convergeAngle = 1.11;//2.5; //1.43;//
+	horizontalOffset = 15.5;//23; // 26.3;
+	cameraPositionLeft.set(640,480,888);
+	cameraPositionRight.set(640,480,888);
+	leftColour = ofColor(255,0,0);
+	rightColour = ofColor(0,140,255);
+	
+};
+
 void LaserManagerAnaglyphic:: addLaserLineEased(const ofPoint&startpoint, const ofPoint&endpoint, ofFloatColor colour) {
 	
 	ofPoint p1 = convertToLeftPoint(startpoint);
 	ofPoint p2 = convertToLeftPoint(endpoint);
-	LaserManager::addLaserLineEased(p1, p2, ofColor::red);
+	LaserManager::addLaserLineEased(p1, p2, leftColour);
 	p1 = convertToRightPoint(startpoint);
 	p2 = convertToRightPoint(endpoint);
-	LaserManager::addLaserLineEased(p1, p2, ofColor::blue);
+	LaserManager::addLaserLineEased(p1, p2, rightColour);
 	
 	
 	
@@ -26,16 +48,16 @@ void LaserManagerAnaglyphic:: addLaserLineEased(const ofPoint&startpoint, const 
 ofPoint LaserManagerAnaglyphic::convertToLeftPoint(ofPoint p) {
 	ofPoint rp = p;
 	
-	rp.x -= horizontalOffset;
-	rp.rotate( convergeAngle, cameraPosition, ofPoint(0,1,0) );
+	rp.x += horizontalOffset;
+	rp.rotate( convergeAngle, cameraPositionLeft, ofPoint(0,1,0) );
 
 	return rp;
 };
 
 ofPoint LaserManagerAnaglyphic::convertToRightPoint(ofPoint p){
 	ofPoint rp = p;
-	rp.x += horizontalOffset;
-	rp.rotate( -convergeAngle, cameraPosition, ofPoint(0,1,0) );
+	rp.x -= horizontalOffset;
+	rp.rotate( -convergeAngle, cameraPositionRight, ofPoint(0,1,0) );
 	
 	return rp;
 };
@@ -58,8 +80,8 @@ void LaserManagerAnaglyphic::addLaserPolyline(const ofPolyline& line, ColourSyst
 		tmpPolyRight.addVertex(gLProject(convertToRightPoint(line.getVertices()[i])));
 	}
 	
-	shapes.push_back(new LaserPolyline(tmpPolyLeft, new ColourSystem(ofColor::red), intens));
-	shapes.push_back(new LaserPolyline(tmpPolyRight, new ColourSystem(ofColor::blue), intens));
+	shapes.push_back(new LaserPolyline(tmpPolyLeft, new ColourSystem(leftColour), intens));
+	shapes.push_back(new LaserPolyline(tmpPolyRight, new ColourSystem(rightColour), intens));
 	
 	
 }
@@ -159,8 +181,8 @@ void LaserManagerAnaglyphic :: addLaserSVG(ofxSVG & svg, ofPoint pos, ofPoint sc
 //			lineRight.simplify(0.1);
 //			
 //			//cout << "brightness : " << brightness << endl;
-//			addLaserPolyline(lineLeft,new ColourSystem(ofColor::red),1);
-//			addLaserPolyline(lineRight,new ColourSystem(ofColor::blue),1);
+//			addLaserPolyline(lineLeft,new ColourSystem(leftColour),1);
+//			addLaserPolyline(lineRight,new ColourSystem(rightColour),1);
 //
 //		}
 //	}
