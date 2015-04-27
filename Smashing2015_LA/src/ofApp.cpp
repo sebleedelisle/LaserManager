@@ -108,7 +108,7 @@ void ofApp::setup(){
 	sync.tempo = 128.05;
 	sync.startPosition = -80;//(60000/111) - 5; // start after 1 beat intro
 	
-	pipeOrganData.load();
+	//pipeOrganData.load();
 	domeData.init();
 	domeData.load();
 	
@@ -1469,7 +1469,7 @@ void ofApp::exit() {
 	blueGui.save();
 	
 	laserGui.save();
-	pipeOrganData.save();
+	//pipeOrganData.save();
 	domeData.save();
 	laserManager.warp.saveSettings();
 }
