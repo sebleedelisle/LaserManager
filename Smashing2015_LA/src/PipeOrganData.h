@@ -16,8 +16,8 @@ class PipeOrganData {
 	// HOW TO SAVE? serialise data?
 	
 	public :
-	
 	PipeOrganData() ;
+	void init(ofRectangle rect) ;
 
 	void draw();
 

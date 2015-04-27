@@ -23,9 +23,8 @@ class LaserManagerAnaglyphic : public LaserManager {
 	LaserManagerAnaglyphic();
 	void update(){
 		
-//		addLaserLineEased(ofPoint(640,200,0),ofPoint(640,800,0),ofColor::white);
-//		addLaserLineEased(ofPoint(440,200,200),ofPoint(440,800,200),ofColor::white);
-//		addLaserLineEased(ofPoint(840,200,-200),ofPoint(840,800,-200),ofColor::white);
+
+//		LaserManager::addLaserRectEased(ofPoint(0,0), ofPoint(640,480), ofColor::white);
 //		//cout << ofGetMouseX() << endl;
 
 		
@@ -36,9 +35,16 @@ class LaserManagerAnaglyphic : public LaserManager {
 //		cout << convergeAngle << " " << horizontalOffset << endl;
 		
 	};
+	
+//	void draw() {
+//		
+//
+//		LaserManager::draw();
+//		
+//	}
 
 	void addLaserLineEased(const ofPoint& startpoint,const ofPoint& endpoint, ofFloatColor colour);
-	
+	void addLaserRectEased(const ofPoint&topLeft, const ofPoint&dimensions, ofFloatColor colour);
 	
 	void addLaserPolyline(const ofPolyline& line, ColourSystem* coloursystem = NULL, float intens = 1);
 	void addLaserPolyline(const ofPolyline& line, ofColor col, float intens = 1);

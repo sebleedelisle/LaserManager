@@ -29,7 +29,7 @@ void ofApp::setup(){
 	svgs.back().load("uk map.svg");
 	
 	worldMap.load("world map new file.svg");
-	ukMap.load("uk map.svg");
+	laMap.load("uk map.svg");
 	
 	previewProjector = false;
 	
@@ -42,7 +42,10 @@ void ofApp::setup(){
 	projectorFbo.end();
 	
 	ofSetColor(255);
-	projectorPosition.set(screenWidth/5*2.14, screenHeight*4/5 * 0.99, screenWidth/5, screenHeight/5);
+	//projectorPosition.set(screenWidth/5*2.14, screenHeight*4/5 * 0.99, screenWidth/5, screenHeight/5);
+	projectorPosition.set(460, 327, 370, 213);
+	
+	pipeOrganData.init(projectorPosition); 
 	
 	laserManager.setup(screenWidth, screenHeight);
 	
@@ -104,7 +107,6 @@ void ofApp::setup(){
 	
 	sync.tempo = 128.05;
 	sync.startPosition = -80;//(60000/111) - 5; // start after 1 beat intro
-
 	
 	pipeOrganData.load();
 	domeData.init();
@@ -118,8 +120,6 @@ void ofApp::setup(){
 	effectDomeLines.setDomeData(&domeData);
 	effectPipeOrganLines.setObjects(&pipeOrganData, &particleSystemManager);
 	effectParticles.setObjects(&pipeOrganData, &domeData);
-	
-	
 	
 	smoothVol = 0;
 	
@@ -418,12 +418,45 @@ void ofApp :: drawEffects() {
 		// squares
 		resetEffects();
 		
-		float zpos = ofMap(sync.currentBarFloat, 25,27.75,400,800);//1200);
 		if(sync.currentBar==24) {
 			
-			// expanding squares
-			effectDomeLines.setMode(6);
-			//zpos = ofMap(sync.currentBarFloat, 24,25,-800,400);
+			float totalshapes = 10;
+			float progress = ofMap(sync.barPulse, 1,0.875, 0, 1, true);
+			
+			float endshapes = floor(progress * totalshapes);
+			float startshapes = floor(ofMap(sync.barPulse, 0.75,0.5, 0,totalshapes, true));
+			
+			ofPoint centre(675,840);
+			//		ofPoint topleft = centre + ofPoint(-140,-140);
+			//		ofPoint botright = centre + ofPoint(140,140);
+			//
+			//
+			//		float colourOffset = ofMap(sync.barPulse, 1, 0, 0, 100);
+			//		ofColor c;
+			//		for(int i = startshapes; i<endshapes; i++) {
+			//			c.setHsb((int)(colourOffset + 200-i*12)%255, 255, 255);
+			//			//ofSetColor(c);
+			//
+			//			ofPoint offset(0,i*-40);
+			//			lm.addLaserLineEased( left + offset, centre+offset, c);
+			//			lm.addLaserLineEased(centre + offset, right + offset, c);
+			//
+			//		}
+			
+			
+			for(int i = startshapes; i<endshapes; i++) {
+//				float scale = (float) i / (float)totalshapes;
+//				scale*=scale;
+//				scale*=1.5;
+//				laserManager.addLaserRectEased(ofPoint(640,480) + (ofPoint(-400,-380)*scale), ofPoint(800,600,0)*scale, ofColor::white);
+				
+				float z = ofMap(i, 0, 10, -500, 500);
+				laserManager.addLaserRectEased(ofPoint(640,480, z) + (ofPoint(-400,-100)*1), ofPoint(800,200)*1, ofColor::white);
+				
+			}
+
+			
+			
 			
 		}
 
@@ -432,27 +465,52 @@ void ofApp :: drawEffects() {
 		
 		if(sync.currentBarFloat>24.25) {
 			
+			// z zoom forward at start
+			float zpos = ofMap(sync.currentBarFloat, 24.25,24.75,-10000,-200,true);// 0;//ofMap(sync.currentBarFloat, 25,27.75,200,600);//1200);
 			
+
 			
 			// scaling up from zero to start
-			float scale = ofMap(sync.currentBarFloat, 24.25,24.75,0,0.5,true);
+			float scale = 1;// ofMap(sync.currentBarFloat, 24.25,24.75,0,0.9,true);
 			
 			// xangle increased over time to tilt the world map
-			float xangle = ofMap(sync.currentBarFloat, 25,28,-40,-60, true);
+			float xangle = ofMap(sync.currentBarFloat, 25,28,-60,-65, true);
 			
-			float ypos = ofMap(sync.currentBarFloat, 24.25,24.75,730,480,true);
-			float xpos = 645;
+			// transition in - xpos and ypos set at end
+			float ypos = 400; // ofMap(sync.currentBarFloat, 24.25,24.75,450,450,true);
+			// slow increase in x
+			//float xpos = ofMap(sync.currentBarFloat, 24.25,24.75,645,645,true);
+			float xpos = 645;//
+			
+			
+			// slow increase
+			if( sync.currentBarFloat>24.75) {
+				xpos = ofMap(sync.currentBarFloat,24.75,28,645,745,true);
+				ypos = ofMap(sync.currentBarFloat,24.75,28,400,450,true);
+				
+				zpos = ofMap(sync.currentBarFloat,24.75,28,-200,400,true);
+				
+			}
+
+			
 			
 			float brightness = 1;
 			// make the map fly forward at the end
 			if(sync.currentBarFloat>27.75) {
-				zpos = ofMap(sync.currentBarFloat,27.75,28, 800,1000);
+				zpos = ofMap(sync.currentBarFloat,27.75,28, 400,1000);
+				
 				brightness = ofMap(sync.currentBarFloat,27.75,28, 1,0);
 				
 			}
 			
 			laserManager.addLaserSVG(worldMap, ofPoint(xpos,ypos, zpos),ofPoint(scale,scale),ofPoint(xangle,0,0), ofPoint(10,-47), brightness );
 		
+			
+			
+			// RADAR LINE
+			
+			ofPoint radarOffset(-140,10,0);
+			
 			if(sync.currentBar>=26) {
 				
 				float rotation = sync.barPulse/2;
@@ -460,15 +518,15 @@ void ofApp :: drawEffects() {
 				rotation*=PI*2;
 				
 				ofPoint radarEndPoint = ofPoint(sin(rotation)*120, cos(rotation)*80);
-				ofPoint radarEndPoint2 = ofPoint(sin(rotation)*120, cos(rotation)*80);
-				radarEndPoint2.rotate(3,ofPoint(0,0,1));
+				//ofPoint radarEndPoint2 = ofPoint(sin(rotation)*120, cos(rotation)*80);
+				//radarEndPoint2.rotate(3,ofPoint(0,0,1));
 				
 				radarEndPoint.rotate(-xangle, ofPoint(1,0,0));
-				radarEndPoint2.rotate(-xangle, ofPoint(1,0,0));
+				//radarEndPoint2.rotate(-xangle, ofPoint(1,0,0));
 				
-				laserManager.addLaserLineEased(ofPoint(xpos,ypos,zpos), ofPoint(xpos, ypos,zpos) + radarEndPoint, ofColor(0,100,0));
+				laserManager.addLaserLineEased(ofPoint(xpos,ypos,zpos)+ radarOffset, ofPoint(xpos, ypos,zpos) + radarEndPoint+ radarOffset, ofColor(0,100,0));
 				
-				laserManager.addLaserLineEased(ofPoint(xpos,ypos,zpos), ofPoint(xpos, ypos,zpos) + radarEndPoint2, ofColor::green);
+				//laserManager.addLaserLineEased(ofPoint(xpos,ypos,zpos), ofPoint(xpos, ypos,zpos) + radarEndPoint2, ofColor::green);
 				
 			}
 		}
@@ -497,7 +555,7 @@ void ofApp :: drawEffects() {
 			
 		}
 		
-		laserManager.addLaserSVG(ukMap, ofPoint(xpos,ypos, zpos),ofPoint(scale, scale),ofPoint(xangle,0,0), ofPoint(14,45), brightness );
+		laserManager.addLaserSVG(laMap, ofPoint(xpos,ypos, zpos),ofPoint(scale, scale),ofPoint(xangle,0,0), ofPoint(14,45), brightness );
 		
 		
 		
@@ -506,16 +564,16 @@ void ofApp :: drawEffects() {
 		rotation*=PI*2;
 		
 		ofPoint radarEndPoint = ofPoint(sin(rotation)*180, cos(rotation)*180);
-		ofPoint radarEndPoint2 = ofPoint(sin(rotation)*180, cos(rotation)*180);
-		radarEndPoint2.rotate(3,ofPoint(0,0,1));
+		//ofPoint radarEndPoint2 = ofPoint(sin(rotation)*180, cos(rotation)*180);
+		//radarEndPoint2.rotate(3,ofPoint(0,0,1));
 		
 		radarEndPoint.rotate(-xangle, ofPoint(1,0,0));
-		radarEndPoint2.rotate(-xangle, ofPoint(1,0,0));
+		//radarEndPoint2.rotate(-xangle, ofPoint(1,0,0));
 		
 		laserManager.addLaserLineEased(ofPoint(xpos,ypos,zpos), ofPoint(xpos, ypos,zpos) + radarEndPoint, ofColor(0,100,0));
-		
-		laserManager.addLaserLineEased(ofPoint(xpos,ypos,zpos), ofPoint(xpos, ypos,zpos) + radarEndPoint2, ofColor::green);
-		
+//		
+//		laserManager.addLaserLineEased(ofPoint(xpos,ypos,zpos), ofPoint(xpos, ypos,zpos) + radarEndPoint2, ofColor::green);
+//		
 		
 	
 
@@ -677,14 +735,14 @@ void ofApp :: drawEffects() {
 		// 65 - 66 try it now
 		
 		vector<float> clapsLeft;
-		clapsLeft.push_back(66);
+		clapsLeft.push_back(65.75);
 		//clapsLeft.push_back(67);
-		clapsLeft.push_back(68);
+		clapsLeft.push_back(67.75);
 		
 //		clapsLeft.push_back(69);
-		clapsLeft.push_back(70);
-		clapsLeft.push_back(71);
-		clapsLeft.push_back(72);
+		clapsLeft.push_back(69.75);
+		clapsLeft.push_back(70.75);
+		clapsLeft.push_back(71.75);
 
 		clapsLeft.push_back(73.25);
 		clapsLeft.push_back(73.75);
