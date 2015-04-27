@@ -44,6 +44,36 @@ void LaserManagerAnaglyphic:: addLaserLineEased(const ofPoint&startpoint, const 
 	
 }
 
+
+void LaserManagerAnaglyphic::addLaserCircle(const ofPoint& ofpoint, ofFloatColor colour, float radius, float intensity){
+	
+	ofPoint p = convertToLeftPoint(ofpoint);
+	LaserManager::addLaserCircle( p,  leftColour,  radius,  intensity);
+	
+	p = convertToRightPoint(ofpoint);
+	LaserManager::addLaserCircle( p,  rightColour,  radius,  intensity);
+			
+	
+	//ofPoint p = gLProject(ofpoint);
+	//float scalar = gLGetScaleForZ(ofpoint.z);
+	
+	//shapes.push_back(new LaserCircle(p, colour, radius*scalar , intensity, overlapCircle));
+}
+
+
+
+void LaserManagerAnaglyphic::addLaserDot(const ofPoint& ofpoint, ofFloatColor colour, float intensity){
+	
+	//ofPoint target = warp.getWarpedPoint(ofpoint);
+	ofPoint p = convertToLeftPoint(ofpoint);
+	LaserManager::addLaserDot(p, leftColour,  intensity);
+	p = convertToRightPoint(ofpoint);
+	LaserManager::addLaserDot(p, rightColour,  intensity);
+}
+
+
+
+
 void LaserManagerAnaglyphic::addLaserRectEased(const ofPoint&topLeft, const ofPoint&dimensions, ofFloatColor colour){
 	
 	addLaserLineEased(topLeft, ofPoint(topLeft.x+dimensions.x,topLeft.y, topLeft.z), colour);

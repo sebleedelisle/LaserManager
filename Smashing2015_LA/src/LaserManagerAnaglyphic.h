@@ -43,6 +43,12 @@ class LaserManagerAnaglyphic : public LaserManager {
 //		
 //	}
 
+	
+	void addLaserCircle(const ofPoint& ofpoint, ofFloatColor colour, float radius, float intensity =1);
+	
+	void addLaserDot(const ofPoint& ofpoint, ofFloatColor colour, float intensity =1);
+
+	
 	void addLaserLineEased(const ofPoint& startpoint,const ofPoint& endpoint, ofFloatColor colour);
 	void addLaserRectEased(const ofPoint&topLeft, const ofPoint&dimensions, ofFloatColor colour);
 	

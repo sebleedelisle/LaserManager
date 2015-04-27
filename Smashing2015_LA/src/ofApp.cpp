@@ -26,10 +26,10 @@ void ofApp::setup(){
 	svgs.back().load("NyanCat.svg");
 	
 	svgs.push_back(ofxSVG());
-	svgs.back().load("uk map.svg");
+	svgs.back().load("california.svg");
 	
 	worldMap.load("world map new file.svg");
-	laMap.load("uk map.svg");
+	laMap.load("california.svg");
 	
 	previewProjector = false;
 	
@@ -108,7 +108,7 @@ void ofApp::setup(){
 	sync.tempo = 128.05;
 	sync.startPosition = -80;//(60000/111) - 5; // start after 1 beat intro
 	
-	pipeOrganData.load();
+	//pipeOrganData.load();
 	domeData.init();
 	domeData.load();
 	
@@ -537,7 +537,7 @@ void ofApp :: drawEffects() {
 	
 	if((sync.currentBarFloat>=27.75) && (sync.currentBar<32)) {
 		// scaling up from zero to start
-		float scale = 2;//ofMap(sync.currentBarFloat, 24.5,24.75,0,0.5,true);
+		float scale = 1;//ofMap(sync.currentBarFloat, 24.5,24.75,0,0.5,true);
 		float zpos = ofMap(sync.currentBarFloat, 27.75, 32,100,700);//1200);
 		
 		float xpos = 645;
@@ -563,7 +563,7 @@ void ofApp :: drawEffects() {
 		if(sync.currentBar%2==1) rotation+=0.5;
 		rotation*=PI*2;
 		
-		ofPoint radarEndPoint = ofPoint(sin(rotation)*180, cos(rotation)*180);
+		ofPoint radarEndPoint = ofPoint(sin(rotation)*100, cos(rotation)*100);
 		//ofPoint radarEndPoint2 = ofPoint(sin(rotation)*180, cos(rotation)*180);
 		//radarEndPoint2.rotate(3,ofPoint(0,0,1));
 		
@@ -1469,7 +1469,7 @@ void ofApp::exit() {
 	blueGui.save();
 	
 	laserGui.save();
-	pipeOrganData.save();
+	//pipeOrganData.save();
 	domeData.save();
 	laserManager.warp.saveSettings();
 }

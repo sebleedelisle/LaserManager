@@ -19,8 +19,8 @@ PipeOrganData::PipeOrganData() {
 
 void PipeOrganData::init(ofRectangle rect) {
 	
-	
-	int numPipes = 26;
+	rect.scaleFromCenter(0.7,0.7);
+	int numPipes = 22;
 	
 	for (int i = 0; i<numPipes; i++) {
 		
