@@ -53,7 +53,7 @@ void EffectDomeLines:: update(float deltaTime) {
 }
 
 // also gonna need : LaserManager
-void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManager& lm) {
+void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManagerAnaglyphic& lm) {
 	ofPolyline poly;
 	
 	volumes.push_front(volume);
