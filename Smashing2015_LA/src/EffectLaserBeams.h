@@ -8,7 +8,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "LaserManager.h"
+#include "LaserManagerAnaglyphic.h"
 
 struct LaserBeam {
 	
@@ -36,7 +36,7 @@ class EffectLaserBeams {
 	EffectLaserBeams(); 
 	
 	void update(float deltaTime);
-	void draw(LaserManager& lm, float intensity);
+	void draw(LaserManagerAnaglyphic& lm, float intensity);
 	
 	deque<LaserBeam> beams;
 	float speed;

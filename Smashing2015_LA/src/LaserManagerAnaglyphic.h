@@ -10,32 +10,27 @@
 
 #include "LaserManager.h"
 
+
+
+
 class LaserManagerAnaglyphic : public LaserManager {
 
 
 	public :
-	//static LaserManagerAnaglyphic * instanceAnaglyphic();
-	//static LaserManagerAnaglyphic * laserManagerAnaglyphic;
+	static LaserManagerAnaglyphic * instanceAnaglyphic();
+	static LaserManagerAnaglyphic * laserManagerAnaglyphic;
 	
-	LaserManagerAnaglyphic() : LaserManager() {
-		
-		// TODO figure out where the camera actually is
-		
-		convergeAngle = 1.43;//2.5;
-		horizontalOffset = 26.3;// 23;
-		cameraPosition.set(640,480,-500);
-		
-	};
-	
+	LaserManagerAnaglyphic();
 	void update(){
 		
-//		addLaserLineEased(ofPoint(640,100,0),ofPoint(640,700,0),ofColor::white);
-//		addLaserLineEased(ofPoint(440,100,200),ofPoint(440,700,200),ofColor::white);
-//		addLaserLineEased(ofPoint(840,100,-200),ofPoint(840,700,-200),ofColor::white);
-		
+//		addLaserLineEased(ofPoint(640,200,0),ofPoint(640,800,0),ofColor::white);
+//		addLaserLineEased(ofPoint(440,200,200),ofPoint(440,800,200),ofColor::white);
+//		addLaserLineEased(ofPoint(840,200,-200),ofPoint(840,800,-200),ofColor::white);
+//		//cout << ofGetMouseX() << endl;
+
 		
 		LaserManager::update();
-//		convergeAngle = (ofGetMouseY()-480) * 0.01;
+//		convergeAngle = (ofGetMouseY()) * 0.01;
 //		horizontalOffset = (float) ofGetMouseX()*0.1f;
 //
 //		cout << convergeAngle << " " << horizontalOffset << endl;
@@ -59,21 +54,17 @@ class LaserManagerAnaglyphic : public LaserManager {
 	
 	float horizontalOffset;
 	float convergeAngle;
-	ofPoint cameraPosition;
+	ofPoint cameraPositionLeft;
+	ofPoint cameraPositionRight;
 	
 	ofPolyline tmpPolyLeft;
-	ofPolyline tmpPolyRight; 
+	ofPolyline tmpPolyRight;
+	
+	ofColor leftColour;
+	ofColor rightColour;
 	
 
 };
 
 
-//LaserManagerAnaglyphic * LaserManagerAnaglyphic :: laserManagerAnaglyphic = NULL;
-//
-//LaserManagerAnaglyphic * LaserManagerAnaglyphic::instanceAnaglyphic() {
-//	if(laserManagerAnaglyphic == NULL) {
-//		laserManagerAnaglyphic = new LaserManagerAnaglyphic();
-//	}
-//	return laserManagerAnaglyphic;
-//}
 
