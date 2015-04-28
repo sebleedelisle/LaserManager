@@ -1,16 +1,16 @@
 <LaserManager>
 		<Laser_Manager>
 			<UnknownName>ETHERDREAM_RUNNING</UnknownName>
-			<intensity>1</intensity>
+			<intensity>0.815</intensity>
 			<test_pattern>0</test_pattern>
 			<sync_delay>0</sync_delay>
 			<points_per_second>31125</points_per_second>
 			<mask_margin_top>158.4</mask_margin_top>
-			<mask_margin_bottom>408</mask_margin_bottom>
+			<mask_margin_bottom>432</mask_margin_bottom>
 			<mask_margin_left>0</mask_margin_left>
 			<mask_margin_right>0</mask_margin_right>
 			<show_warp_points>1</show_warp_points>
-			<colour_change_offset>0</colour_change_offset>
+			<colour_change_offset>-8</colour_change_offset>
 			<flip_x>0</flip_x>
 			<flip_y>1</flip_y>
 			<laser_on_during_move>0</laser_on_during_move>
@@ -21,9 +21,9 @@
 			<move_points_padding>8</move_points_padding>
 			<shape_pre_blank_points>5</shape_pre_blank_points>
 			<shape_post_blank_points>2</shape_post_blank_points>
-			<dot_max_points>37</dot_max_points>
-			<line_acceleration>0.86785</line_acceleration>
-			<line_speed>4.47</line_speed>
+			<dot_max_points>40</dot_max_points>
+			<line_acceleration>1.06735</line_acceleration>
+			<line_speed>6.75</line_speed>
 			<circle_overlap>0</circle_overlap>
 			<circle_acceleration>0.22945</circle_acceleration>
 			<circle_speed>6.94</circle_speed>
