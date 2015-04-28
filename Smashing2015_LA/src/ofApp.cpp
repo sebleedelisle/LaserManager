@@ -13,7 +13,7 @@ void ofApp::setup(){
 	
 	guideImage.loadImage("img/GuideImageLA.jpg");
 	music.loadSound("../../../Music/RobotsEdit2.aif");
-	video.loadMovie("../../../Music/Main Video 08.mov");
+	video.loadMovie("../../../Music/Main Timeline Stereo 3D_6.mov");
 	video.setVolume(0);
 	video.play();
 	video.update();
@@ -33,12 +33,12 @@ void ofApp::setup(){
 	
 	previewProjector = false;
 	
-	projectorFbo.allocate(1024, 768, GL_RGB, 4);
+	projectorFbo.allocate(1280, 720, GL_RGB, 4);
 	uiFbo.allocate(screenWidth, screenHeight, GL_RGB, 2); 
 
 	projectorFbo.begin();
 	ofSetColor(0);
-	ofRect(0,0,1024,768);
+	ofRect(0,0,1280,720);
 	projectorFbo.end();
 	
 	ofSetColor(255);
@@ -305,10 +305,10 @@ void ofApp::draw(){
 
 	ofFill();
 	ofSetColor(0);
-	ofRect(0,0,1024,768);
+	ofRect(0,0,1280,720);
 	ofSetColor(255);
 	
-	video.draw(0,0,1024,768);
+	video.draw(0,0,1280,720);
 	
 	
 	
@@ -316,7 +316,7 @@ void ofApp::draw(){
 	
 	
 	ofPushMatrix();
-	ofTranslate(512,384);
+	ofTranslate(640,360);
 	
 	// draw wordparticles
 	for(int i = 0; i<wordParticles.size(); i++) {
@@ -509,7 +509,7 @@ void ofApp :: drawEffects() {
 			
 			// RADAR LINE
 			
-			ofPoint radarOffset(-140,10,0);
+			ofPoint radarOffset(-145,10,0);
 			
 			if(sync.currentBar>=26) {
 				
@@ -541,7 +541,7 @@ void ofApp :: drawEffects() {
 		float zpos = ofMap(sync.currentBarFloat, 27.75, 32,100,700);//1200);
 		
 		float xpos = 645;
-		float ypos = 480;
+		float ypos = 460;
 		
 		
 		// xangle increased over time to tilt the world map
@@ -557,6 +557,7 @@ void ofApp :: drawEffects() {
 		
 		laserManager.addLaserSVG(laMap, ofPoint(xpos,ypos, zpos),ofPoint(scale, scale),ofPoint(xangle,0,0), ofPoint(14,45), brightness );
 		
+		ofPoint radarOffset(0,10,0);
 		
 		
 		float rotation = sync.barPulse/2;
@@ -570,7 +571,7 @@ void ofApp :: drawEffects() {
 		radarEndPoint.rotate(-xangle, ofPoint(1,0,0));
 		//radarEndPoint2.rotate(-xangle, ofPoint(1,0,0));
 		
-		laserManager.addLaserLineEased(ofPoint(xpos,ypos,zpos), ofPoint(xpos, ypos,zpos) + radarEndPoint, ofColor(0,100,0));
+		laserManager.addLaserLineEased(ofPoint(xpos,ypos,zpos)+radarOffset, ofPoint(xpos, ypos,zpos) + radarEndPoint + radarOffset, ofColor(0,100,0));
 //		
 //		laserManager.addLaserLineEased(ofPoint(xpos,ypos,zpos), ofPoint(xpos, ypos,zpos) + radarEndPoint2, ofColor::green);
 //		
@@ -1387,7 +1388,7 @@ void ofApp::calculateScreenSizes(){
 	if(screens.size()>1) {
 		secondScreenRect = screens[1];
 	} else {
-		secondScreenRect.set(screens[0].getRight(), screens[0].getTop(), 1024,768);
+		secondScreenRect.set(screens[0].getRight(), screens[0].getTop(), 1280,720);
 	}
 	
 }

@@ -12,7 +12,7 @@
 
 EffectLaserBeams :: EffectLaserBeams() {
 	
-	speed = 1000;
+	speed = 500;
 	emitCount = 0;
 	emitRate = 5;
 	elapsedTime = 0;
@@ -70,7 +70,7 @@ void EffectLaserBeams :: update(float deltaTime){
 			currentHue += 3;
 		}
 		
-		ofPoint pos(0,-ofRandom(400,400));
+		ofPoint pos(0,-ofRandom(100,200));
 		if(rotateEmission) {
 			pos.rotate(currentAngle, ofPoint(0,0,1));
 			currentAngle += 22;
@@ -81,7 +81,7 @@ void EffectLaserBeams :: update(float deltaTime){
 		}
 			
 			
-		beam.pos.set(640,480,-2500);
+		beam.pos.set(640,480,-500);
 		beam.pos+=pos;
 
 		emitCount++;
