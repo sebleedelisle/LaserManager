@@ -53,7 +53,7 @@ void EffectLaserBeams :: update(float deltaTime){
 		multiColoured = false;
 		rotateEmission = false;
 		respondToVolume = false;
-		emitRate = 10;
+		emitRate = 7;
 		beamLength = 10;
 	}
 	

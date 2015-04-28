@@ -371,7 +371,7 @@ void ofApp::draw(){
         }
 	
     //}
-    if(clappyBirdActive) clappyBird.draw();
+    if(clappyBirdActive) clappyBird.draw(laserManager);
 	
 	
 	laserManager.draw();

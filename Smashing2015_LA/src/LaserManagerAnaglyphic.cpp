@@ -22,8 +22,8 @@ LaserManagerAnaglyphic::LaserManagerAnaglyphic() : LaserManager() {
 	
 	// TODO figure out where the camera actually is
 	
-	convergeAngle = 1.11;//2.5; //1.43;//
-	horizontalOffset = 15.5;//23; // 26.3;
+	convergeAngle = 0.21;//1.11;//2.5; //1.43;//
+	horizontalOffset = 3.5;//15.5;//23; // 26.3;
 	cameraPositionLeft.set(640,480,888);
 	cameraPositionRight.set(640,480,888);
 	leftColour = ofColor(255,0,0);

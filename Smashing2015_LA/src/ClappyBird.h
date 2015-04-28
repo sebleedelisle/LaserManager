@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "LaserManager.h"
+#include "LaserManagerAnaglyphic.h"
 
 struct Column {
 	
@@ -28,7 +28,7 @@ class ClappyBird {
 
 	public:
 	
-	ClappyBird() : laserManager(*LaserManager::instance()) {
+	ClappyBird() {
 	
 		top = 300;
 		bottom = 700;
@@ -63,10 +63,10 @@ class ClappyBird {
 		
 	}
 
-	LaserManager& laserManager;
+	//LaserManagerAnaglyphic& laserManager;
 	
 	void update(float inputlevel, float deltatime);
-	void draw() ;
+	void draw(LaserManagerAnaglyphic& lm) ;
 	void reset(); 
 	
 	float top, bottom, ypos, yvel, xpos ;

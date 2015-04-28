@@ -80,7 +80,7 @@ void ClappyBird :: update(float inputlevel, float deltatime) {
 
 }
 
-void ClappyBird :: draw() {
+void ClappyBird :: draw(LaserManagerAnaglyphic& laserManager) {
 	
 	
 	
