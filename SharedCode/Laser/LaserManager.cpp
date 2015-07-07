@@ -122,6 +122,7 @@ void LaserManager:: setup (int width, int height) {
 	
 	parameters.add(flipX.set("flip x", true));
 	parameters.add(flipY.set("flip y", true));
+	//parameters.add(scale.set("scale", 1,1,1.5));
 	
 	parameters.add(showMovePoints.set("laser on during move", false));
 
@@ -1175,8 +1176,7 @@ ofxIlda::Point LaserManager::ofPointToIldaPoint(const ofPoint& ofpoint, ofFloatC
 
 ofPoint LaserManager::ildaPointToOfPoint(const ofxIlda::Point& ildapoint){
 	
-	ofxIlda::Point p = ildapoint; 
-	
+	ofxIlda::Point p = ildapoint;
 
 	p.x = ofMap(p.x, kIldaMinPoint, kIldaMaxPoint, 0, appWidth);
 	p.y = ofMap(p.y, kIldaMinPoint, kIldaMaxPoint, 0, appHeight);
@@ -1252,6 +1252,7 @@ void LaserManager::addIldaPoint(ofPoint p, ofFloatColor c, float pointIntensity,
 			//cout << "brightness " << brightness << endl;
 			
 		}
+	
 		
 		addPoint(p, c, useCalibration);
 
@@ -1272,6 +1273,8 @@ void LaserManager::addPoint(ofPoint p, ofFloatColor c, bool useCalibration) {
 	ofPoint warpedpoint = warp.getWarpedPoint(p);
 	
 	ofxIlda::Point ildapoint = ofPointToIldaPoint(warpedpoint, c);
+//	ildapoint.x*=scale;
+//	ildapoint.y*=scale;
 	ildaPoints.push_back(ildapoint);
 	
 	if(showPostTransformPreview){

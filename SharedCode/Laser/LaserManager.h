@@ -115,7 +115,7 @@ class LaserManager {
 		// TODO get this from the current drawstate!
 //		viewport[2] = 1280;
 //		viewport[3] = 960;
-//		
+//
 		//cout << viewport[0] << " " <<viewport[1] << " " <<viewport[2] << " " <<viewport[3] << " " << endl;
 		
 		GLdouble X, Y, Z = 0;
@@ -165,6 +165,7 @@ class LaserManager {
 	ofParameter<bool> showWarpPoints;
 	ofParameter<bool> flipX;
 	ofParameter<bool> flipY;
+	//ofParameter<float> scale;
 	ofParameter<int> testPattern;
 	int numTestPatterns; 
 	//ofParameter<bool> showMaskRectangle;
